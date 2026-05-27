@@ -26,12 +26,16 @@ p {
 
 h1,
 h2 {
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	margin-top: 0.75em;
+	margin-bottom: 0.33em;
 }
 
 img {
 	height: 500px;
 	float: right;
+	border: 7px white solid;
+	box-shadow: 3px 3px 6px gray;
 }
 
 #poem {
@@ -45,6 +49,10 @@ td {
 	border-collapse: collapse;
 	border-spacing: 3px;
 	padding: 3px;
+}
+
+table {
+	table-layout: fixed;
 }
 
 th,
@@ -80,7 +88,7 @@ td {
 
 .container {
 	background-color: ghostwhite;
-	padding: 5px 30px 30px 30px;
-	width: 80%;
+	padding: 10px 40px 40px 40px;
+	width: 75%;
 
 }
