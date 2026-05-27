@@ -1,0 +1,78 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url(../resources/repeatable.jpg)
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	background: linear-gradient(135deg, darkslategray, slategray);
+	color: lightgray;
+	padding: 30px;
+	font-size: 30pt;
+}
+
+p {
+	text-indent: 1em;
+}
+
+img {
+	height: 500px;
+	float: right;
+}
+
+#poem {
+	text-align: center;
+}
+
+table,
+th,
+td {
+	border: 1px, solid, black;
+	border-collapse: collapse;
+	border-spacing: 3px;
+	padding: 3px;
+}
+
+th,
+td {
+	width: 80px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.cs1400 {
+	background-color: aqua;
+}
+
+.cs2550 {
+	background-color: mediumspringgreen;
+}
+
+.cs2810 {
+	background-color: pink;
+}
+
+.cs2420 {
+	background-color: beige;
+}
+
+.homework {
+	background-color: lightgrey;
+}
+
+.pickup {
+	background-color: yellow;
+}
+
+.container {
+	background-color: ghostwhite;
+	padding: 5px 30px 30px 30px;
+
+}
