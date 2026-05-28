@@ -78,43 +78,43 @@ tr:nth-child(odd) {
 
 th {
 	background: lightslategray;
-	width: 120px;
 }
 
 th,
 td {
 	text-align: left;
 	vertical-align: top;
+	width: 120px;
 }
 
 .cs1400 {
 	background-color: aqua;
-	border: 2px solid darkcyan
+	border: 2px inset darkcyan
 }
 
 .cs2550 {
 	background-color: mediumspringgreen;
-	border: 2px solid darkgreen
+	border: 2px inset darkgreen
 }
 
 .cs2810 {
 	background-color: pink;
-	border: 2px solid palevioletred
+	border: 2px inset palevioletred
 }
 
 .cs2420 {
 	background-color: beige;
-	border: 2px solid bisque
+	border: 2px inset bisque
 }
 
 .homework {
 	background-color: lightgrey;
-	border: 2px solid darkgray
+	border: 2px inset darkgray
 }
 
 .pickup {
 	background-color: yellow;
-	border: 2px solid goldenrod
+	border: 2px inset goldenrod
 }
 
 .container {
