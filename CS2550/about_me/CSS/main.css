@@ -18,7 +18,7 @@ a:hover {
 
 p {
 	text-indent: 1em;
-	margin-bottom: 0.75em;
+	margin-bottom: 1em;
 }
 
 h1 {
@@ -48,6 +48,12 @@ img {
 
 #poem {
 	text-align: center;
+
+}
+
+#poem::first-letter {
+	color: darkslategray;
+	font-size: x-large;
 }
 
 table,
@@ -72,15 +78,11 @@ tr:nth-child(odd) {
 
 th {
 	background: lightslategray;
-}
-
-tr {
-	border-bottom: 1px solid aliceblue;
+	width: 120px;
 }
 
 th,
 td {
-	width: 120px;
 	text-align: left;
 	vertical-align: top;
 }
