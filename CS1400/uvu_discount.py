@@ -1,10 +1,10 @@
 price = float(input("Enter the item price: "))
-bt = input("Enter buyer type ('s' for student, 'f' for faculty): ")
+buyer_type = input("Enter buyer type ('s' for student, 'f' for faculty): ")
 
-if bt == "s":
+if buyer_type == "s":
     final_price = price - (price * 0.05)
     print(f"Final price after 5% discount: ${final_price:.2f}")
-elif bt == "f":
+elif buyer_type == "f":
     final_price = price - (price * 0.08)
     print(f"Final price after 8% discount: ${final_price:.2f}")
 else:
