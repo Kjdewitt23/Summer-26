@@ -1,0 +1,31 @@
+body {
+    display: grid;
+    grid-template-areas:
+        "hd hd hd hd hd hd hd hd hd hd hd hd"
+        "asd asd mn mn mn mn mn mn mn mn mn mn"
+        "ft ft ft ft ft ft ft ft ft ft ft ft"
+}
+
+header {
+    background-color: lightblue;
+    border: 3px solid black;
+    grid-area: hd;
+}
+
+aside {
+    background-color: yellow;
+    border: 3px solid black;
+    grid-area: asd;
+}
+
+main {
+    background-color: lightcoral;
+    border: 3px solid black;
+    grid-area: mn;
+}
+
+footer {
+    background-color: lightgreen;
+    border: 3px solid black;
+    grid-area: ft;
+}
