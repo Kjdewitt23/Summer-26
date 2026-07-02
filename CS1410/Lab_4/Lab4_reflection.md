@@ -1,0 +1,1 @@
+When you try to modify the read only property it throws an attribute error because there is no setter. 
