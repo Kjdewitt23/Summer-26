@@ -1,6 +1,11 @@
 :root {
     --main-text: #222;
     --menu-text: #ddd;
+    --body-back: radial-gradient(circle, rgba(207, 207, 207, 1) 23%, rgb(134, 134, 134) 89%, rgb(99, 99, 99) 100%);
+    --home-back: linear-gradient(147deg, rgb(110, 110, 110) 71%, rgba(79, 79, 79, 1) 100%);
+    --mov-back: linear-gradient(147deg, rgba(196, 186, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    --game-back: linear-gradient(147deg, rgba(77, 196, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    --tv-back: linear-gradient(147deg, rgba(47, 154, 196, 1) 71%, rgba(79, 79, 79, 1) 100%);
 
 }
 
@@ -13,7 +18,7 @@ body {
         "ft ft ft ft ft ft ft ft ft ft ft ft";
     font-family: Arial, Helvetica, sans-serif;
     color: var(--main-text);
-    background: radial-gradient(circle, rgba(207, 207, 207, 1) 23%, rgb(134, 134, 134) 89%, rgb(99, 99, 99) 100%);
+    background: var(--body-back)
 }
 
 a {
@@ -52,38 +57,38 @@ nav a:hover {
 }
 
 .home:hover {
-    background: linear-gradient(147deg, rgb(110, 110, 110) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--home-back);
 }
 
 .movies:hover {
-    background: linear-gradient(147deg, rgba(196, 186, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--mov-back);
 }
 
 .games:hover {
-    background: linear-gradient(147deg, rgba(77, 196, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--game-back);
 }
 
 .tv:hover {
-    background: linear-gradient(147deg, rgba(47, 154, 196, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--tv-back);
 }
 
 .home.active-nav {
-    background: linear-gradient(147deg, rgb(110, 110, 110) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--home-back);
     color: var(--menu-text);
 }
 
 .movies.active-nav {
-    background: linear-gradient(147deg, rgba(196, 186, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--mov-back);
     color: var(--menu-text);
 }
 
 .games.active-nav {
-    background: linear-gradient(147deg, rgba(77, 196, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--game-back);
     color: var(--menu-text);
 }
 
 .tv.active-nav {
-    background: linear-gradient(147deg, rgba(47, 154, 196, 1) 71%, rgba(79, 79, 79, 1) 100%);
+    background: var(--tv-back);
     color: var(--menu-text);
 }
 
@@ -137,6 +142,10 @@ main section.active {
 figcaption {
     justify-self: center;
     color: var(--main-text);
+}
+
+#theme-toggle {
+    width: 80%
 }
 
 @media screen and (max-width: 768px) {

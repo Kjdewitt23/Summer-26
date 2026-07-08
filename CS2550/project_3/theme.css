@@ -1,0 +1,38 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+h1 {
+    color: var(--menu-text)
+}
+
+main {
+    background: radial-gradient(circle, rgb(109, 109, 109) 23%, rgb(75, 75, 75) 89%, rgb(46, 46, 46) 100%);
+    color: var(--menu-text);
+}
+
+body.home-bg {
+    background: var(--home-back)
+}
+
+body.movies-bg {
+    background: var(--mov-back);
+}
+
+body.games-bg {
+    background: var(--game-back);
+}
+
+body.tv-bg {
+    background: var(--tv-back);
+}
+
+.home.active-nav,
+.movies.active-nav,
+.games.active-nav,
+.tv.active-nav {
+    background: none;
+    color: var(--menu-text);
+    font-weight: bold;
+}
