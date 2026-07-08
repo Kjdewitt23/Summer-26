@@ -1,0 +1,6 @@
+Log Summary
+INFO: 20
+WARNING: 10
+ERROR: 12
+DEBUG: 9
+Longest message: New connection established from 192.168.1.10
