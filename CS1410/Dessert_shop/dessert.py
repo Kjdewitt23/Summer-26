@@ -2,12 +2,6 @@ class DessertItem:
     def __init__(self, name:str = ""):
         self.name = name
 
-    def get_name(self):
-        return self.name
-    
-    def set_name(self, name:str):
-        self.name = name
-
 class Candy(DessertItem):
     def __init__(self, name:str = "", candy_weight:float = 0.0, price_per_pound:float = 0.0):
         super().__init__(name)
@@ -31,3 +25,16 @@ class Sundae(IceCream):
         super().__init__(name, scoop_count, price_per_scoop)
         self.topping_name = topping_name
         self.topping_price = topping_price
+
+class Order():
+    def __init__(self):
+        self.order = []
+    
+    def add(self, item):
+        self.order.append(item)
+
+    def __len__(self):
+        return len(self.order)
+    
+    def __iter__(self):
+        return iter(self.order)
