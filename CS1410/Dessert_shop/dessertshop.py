@@ -1,5 +1,5 @@
 from dessert import *
-from tabulate import tabulate
+from tabulate import SEPARATING_LINE, tabulate
 
 class DessertShop:
     def __init__(self):
@@ -57,14 +57,13 @@ class DessertShop:
 def main():
     shop = DessertShop() 
     order = Order()
-    '''
-    order.add(Candy('Candy Corn', 1.5, 0.25))
-    order.add(Candy('Gummy Bears', 0.25, 0.35))
-    order.add(Cookie('Chocolate Chip', 6, 3.99))
-    order.add(IceCream('Pistachio', 2, 0.79))
-    order.add(Sundae('Vanilla', 3, 0.69, 'Hot Fudge', 1.29))
-    order.add(Cookie('Oatmeal Raisin', 2, 3.45))
-    '''
+    
+    # order.add(Candy('Candy Corn', 1.5, 0.25))
+    # order.add(Candy('Gummy Bears', 0.25, 0.35))
+    # order.add(Cookie('Chocolate Chip', 6, 3.99))
+    # order.add(IceCream('Pistachio', 2, 0.79))
+    # order.add(Sundae('Vanilla', 3, 0.69, 'Hot Fudge', 1.29))
+    # order.add(Cookie('Oatmeal Raisin', 2, 3.45))
     
     done: bool = False
     # build the prompt string once
@@ -101,29 +100,15 @@ def main():
           print('Invalid response:  Please enter a choice from the menu (1-4) or Enter')
     print()
     
-    data = []
-    subtotal = 0
-    tax = 0
+    data = order.to_list()
 
-    for item in order:
-        cost = item.calculate_cost()
-        item_tax = item.calculate_tax()
+    data.append(SEPARATING_LINE)
 
-        subtotal += cost
-        tax += item_tax
-
-        data.append([
-            item.name,
-            f"${cost:.2f}",
-            f"${item_tax:.2f}"
-        ])
-    total = subtotal + tax
-
-    data.append(["Order Subtotal", f"${subtotal:.2f}", f"${tax:.2f}"])
-    data.append(["Order Total", "", f"${total:.2f}"])
+    data.append(["Order Subtotal", f"${order.order_cost():.2f}", f"${order.order_tax():.2f}"])
+    data.append(["Order Total", "", f"${order.order_cost() + order.order_tax():.2f}"])
     data.append(["Total Items in the order:", "", len(order)])
 
-    print(tabulate(data, headers=["Name", "Cost", "Tax"], tablefmt="fancy_grid"))
+    print(tabulate(data, headers=["Name", "Cost", "Tax"], tablefmt="psql"))
 
 if __name__ == "__main__":
     main()

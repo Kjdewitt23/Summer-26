@@ -20,6 +20,9 @@ class Candy(DessertItem):
         self.candy_weight = candy_weight
         self.price_per_pound = price_per_pound
 
+    def __str__(self):
+        return f"{self.name}\n -    {self.candy_weight} lbs. @ ${self.price_per_pound}/lb:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+
     def calculate_cost(self):
         cost = self.candy_weight * self.price_per_pound
         return round(cost, 2)
@@ -29,6 +32,9 @@ class Cookie(DessertItem):
         super().__init__(name)
         self.cookie_quantity = cookie_quantity
         self.price_per_dozen = price_per_dozen
+
+    def __str__(self):
+        return f"{self.name} Cookies\n -    {self.cookie_quantity} cookies. @ ${self.price_per_dozen}/dozen:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
 
     def calculate_cost(self):
         cost = (self.cookie_quantity / 12) * self.price_per_dozen
@@ -40,6 +46,9 @@ class IceCream(DessertItem):
         self.scoop_count = scoop_count
         self.price_per_scoop = price_per_scoop
 
+    def __str__(self):
+        return f"{self.name} Ice Cream\n-    {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+
     def calculate_cost(self):
         cost = self.scoop_count * self.price_per_scoop
         return round(cost, 2)
@@ -50,6 +59,9 @@ class Sundae(IceCream):
         self.topping_name = topping_name
         self.topping_price = topping_price
 
+    def __str__(self):
+        return f"{self.topping_name} {self.name} Sundae\n -    {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop\n-    {self.topping_name} @ ${self.topping_price}:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+
     def calculate_cost(self):
         cost = (self.scoop_count * self.price_per_scoop) + self.topping_price
         return round(cost, 2)
@@ -57,6 +69,13 @@ class Sundae(IceCream):
 class Order():
     def __init__(self):
         self.order = []
+
+    def __str__(self):
+        return "\n".join(str(item) for item in self.order)
+    
+    def to_list(self):
+        lines = str(self).split("\n")
+        return [line.split(",") for line in lines]
     
     def add(self, item):
         self.order.append(item)
