@@ -34,3 +34,6 @@ class Test_IceCream:
 
     def test_iceCream_calculate_tax_super_method(self, iceCream_vals):
         assert iceCream_vals.calculate_tax() == 0.22
+
+    def test_iceCream_packaging(self, iceCream):
+        assert iceCream.packaging == "Bowl"

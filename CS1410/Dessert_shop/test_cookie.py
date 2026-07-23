@@ -34,3 +34,6 @@ class Test_Cookie:
 
     def test_cookie_calculate_tax_super_method(self, cookie_vals):
         assert cookie_vals.calculate_tax() == 0.36
+
+    def test_cookie_packaging(self, cookie):
+        assert cookie.packaging == "Box"

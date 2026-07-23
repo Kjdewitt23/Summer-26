@@ -35,3 +35,6 @@ class Test_Candy:
 
     def test_candy_calculate_tax_super_method(self, candy_vals):
         assert candy_vals.calculate_tax() == 0.09
+
+    def test_candy_packaging(self, candy):
+        assert candy.packaging == "Bag"

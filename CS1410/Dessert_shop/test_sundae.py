@@ -42,3 +42,6 @@ class Test_Sundae:
 
     def test_sundae_calculate_tax_super_method(self, sundae_vals):
         assert sundae_vals.calculate_tax() == 0.29
+
+    def test_sundae_packaging(self, sundae):
+        assert sundae.packaging == "Boat"
