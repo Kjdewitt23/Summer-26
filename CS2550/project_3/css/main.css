@@ -1,3 +1,4 @@
+/* Core Form Layout */
 :root {
     --main-text: #222;
     --menu-text: #ddd;
@@ -7,6 +8,61 @@
     --game-back: linear-gradient(147deg, rgba(77, 196, 47, 1) 71%, rgba(79, 79, 79, 1) 100%);
     --tv-back: linear-gradient(147deg, rgba(47, 154, 196, 1) 71%, rgba(79, 79, 79, 1) 100%);
 
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.flex li {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 300px;
+    /* Grow, shrink, and set a base width */
+}
+
+.flex li.full-width {
+    flex: 1 1 100%;
+    /* Force element to span the entire row */
+}
+
+.flex li.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Validation Styling Rules */
+.errorMsg {
+    color: red;
+    font-size: 0.85rem;
+    display: none;
+    /* Hidden by default */
+}
+
+/* Only show error borders and messages when 'was-validated' class is added */
+input.was-validated:invalid {
+    border: 2px solid red;
+}
+
+/* Show the adjacent error message div when invalid */
+input.was-validated:invalid~div.errorMsg {
+    display: block;
+}
+
+/* Indicate success with a green border */
+input.was-validated:valid {
+    border: 2px solid green;
 }
 
 body {

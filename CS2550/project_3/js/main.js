@@ -1,3 +1,9 @@
+/* Disclaimer - I wrote all of the code that was not initially provided. 
+I added the function to inputChanged(event) to actually check the validation on each field
+I added the validation to all fields except the textarea
+I found a phone number regex and implemented that
+I added the form to the website while maintaining the single page design
+*/
 const navLinks = document.querySelectorAll("nav a");
 const sectionLinks = document.querySelectorAll('a[href^="#"]');
 const sections = document.querySelectorAll("main section");
@@ -47,3 +53,15 @@ sectionLinks.forEach(link => {
 themeButton.addEventListener("click", function () {
     themeStyle.disabled = !themeStyle.disabled;
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize the validation library 
+    // Pass the IDs of the form and the success message container
+    initValidation("myform", "success");
+});
+
+function inputChanged(event) {
+    validateForm();
+
+    event.target.classList.add("was-validated");
+}

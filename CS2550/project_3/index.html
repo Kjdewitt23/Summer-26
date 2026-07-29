@@ -2,21 +2,13 @@
 <html lang="en">
 <!-- netlify url: https://nerdculturenow.netlify.app -->
 
-<!-- --SELF GRADE--
-REFACTOR CSS-FIX       A
-CSS THEME              A
-CSS THEME TOGGLE       A
-MOBILE RESPONSIVE      A
-ADDITIONAL COMMENTS 
--->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nerd Culture Now</title>
     <link rel="icon" type="image/x-icon" href="resources/favicon.ico">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="theme.css" id="theme-style">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/theme.css" id="theme-style">
 </head>
 
 <body>
@@ -30,6 +22,7 @@ ADDITIONAL COMMENTS
             <a href="#movies" class="nav movies">Movies</a>
             <a href="#games" class="nav games">Games</a>
             <a href="#tv" class="nav tv">TV</a>
+            <a href="#visitor" class="nav visitor">Log Visit</a>
             <button id="theme-toggle">Toggle Theme</button>
         </nav>
     </aside>
@@ -158,12 +151,91 @@ ADDITIONAL COMMENTS
             </div>
 
         </section>
+        <section id="visitor">
+            <div class="container">
+                <h1>Visitor Form</h1>
+                <div id="success" class="successMsg" style="display:none">
+                    Thank you for logging your visit!
+                </div>
+
+                <form id="myform" novalidate onsubmit="return false;">
+                    <ul class="flex">
+                        <li>
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" placeholder="e.g., UT" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="zip">Zip</label>
+                            <input type="text" id="zip" name="zip" placeholder="Enter your zip code" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <div class="errorMsg"></div>
+                        </li>
+                        <li>
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" name="phone" placeholder="Enter your phone" required>
+                            <div class="errorMsg"></div>
+                        </li>
+
+                        <li class="full-width">
+                            <h2>How did you find my page?</h2>
+                        </li>
+                        <li class="checkbox-group">
+                            <input type="checkbox" id="google" name="find-page" value="google">
+                            <label for="google">Google Search</label>
+
+                            <input type="checkbox" id="friend" name="find-page" value="friend">
+                            <label for="friend">Friend</label>
+
+                            <input type="checkbox" id="newspaper" name="find-page" value="newspaper">
+                            <label for="newspaper">News Paper</label>
+                            <div class="errorMsg"></div>
+                        </li>
+
+                        <li class="full-width">
+                            <label for="comment">Comments</label>
+                            <textarea rows="4" id="comment" placeholder="Enter your comments here"></textarea>
+                        </li>
+
+                        <li class="full-width">
+                            <button type="submit" id="submitBtn">Send</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </section>
     </main>
     <footer>
         <address>Written by <a href="mailto:kd23volley@gmail.com">Kollin DeWitt</a></address>
 
     </footer>
     <script src="script.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/main.js"></script>
 </body>
 
 </html>
