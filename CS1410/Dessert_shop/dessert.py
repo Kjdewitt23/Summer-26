@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from packaging import Packaging
+from payment import Payable, PayType
 
 class DessertItem(ABC, Packaging):
     def __init__(self, name:str = "", tax_percent:float = 7.25):
@@ -80,12 +81,23 @@ class Sundae(IceCream):
         cost = (self.scoop_count * self.price_per_scoop) + self.topping_price
         return round(cost, 2)
 
-class Order():
+class Order(Payable):
     def __init__(self):
         self.order = []
+        self.pay_type = "CASH"
+
+    def get_pay_type(self):
+        return self.pay_type
+
+    def set_pay_type(self, payment_method: PayType):
+        if payment_method not in ("CASH", "CARD", "PHONE"):
+            raise ValueError("Please enter a valid payment type.")
+
+        self.pay_type = payment_method
 
     def __str__(self):
-        return "\n".join(str(item) for item in self.order)
+        items = "\n".join(str(item) for item in self.order)
+        return f"{items}\nPaid with {self.get_pay_type()}"
     
     def to_list(self):
         lines = str(self).split("\n")

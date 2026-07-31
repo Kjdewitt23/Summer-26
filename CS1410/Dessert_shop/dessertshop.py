@@ -52,6 +52,15 @@ class DessertShop:
         topping = input("Enter the topping: ")
         tp = self.get_float("Enter the price for the topping: ")
         return Sundae(name, scoops, price, topping, tp)
+
+    def user_prompt_payment(self):
+      while True:
+          try:
+              payment = input("Enter payment type (CASH, CARD, PHONE): ").upper()
+              return payment
+
+          except ValueError:
+              print("Please enter a valid payment type.")
     
 
 def main():
@@ -99,6 +108,14 @@ def main():
         case _:            
           print('Invalid response:  Please enter a choice from the menu (1-4) or Enter')
     print()
+
+    while True:
+      try:
+          payment = shop.user_prompt_payment()
+          order.set_pay_type(payment)
+          break
+      except ValueError:
+          print("Please enter a valid payment type.")
     
     data = order.to_list()
 
@@ -107,6 +124,10 @@ def main():
     data.append(["Order Subtotal", f"${order.order_cost():.2f}", f"${order.order_tax():.2f}"])
     data.append(["Order Total", "", f"${order.order_cost() + order.order_tax():.2f}"])
     data.append(["Total Items in the order:", "", len(order)])
+
+    data.append(SEPARATING_LINE)
+
+    data.append([f"Paid with {order.get_pay_type()}", "", ""])
 
     print(tabulate(data, headers=["Name", "Cost", "Tax"], tablefmt="psql"))
 
