@@ -30,3 +30,10 @@ class Test_Order:
     def test_order_pay_type_error(self, order_vals):
         with pytest.raises(ValueError):
             order_vals.set_pay_type("Money")
+
+    def test_order_sort(self, order_vals):
+        s_lst = order_vals.sort() 
+        assert s_lst == [Candy("Snickers", 2.5, 0.5),
+                        IceCream("Chocolate", 3, 1.0),
+                        Sundae("Chocolate", 3, 1.0, "PB", 1.0),
+                        Cookie("CC", 12, 5.0)]

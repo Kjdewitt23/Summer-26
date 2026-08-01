@@ -24,6 +24,42 @@ class DessertItem(ABC, Packaging):
         tax = self.calculate_cost() * (self.tax_percent / 100)
         return round(tax, 2)
 
+    def __eq__(self, other):
+        if not isinstance(other, DessertItem):
+            return NotImplemented
+
+        return self.calculate_cost() == other.calculate_cost()
+
+    def __ne__(self, other):
+        if not isinstance(other, DessertItem):
+            return NotImplemented
+
+        return self.calculate_cost() != other.calculate_cost()
+
+    def __lt__(self, other):
+        if not isinstance(other, DessertItem):
+            return NotImplemented
+
+        return self.calculate_cost() < other.calculate_cost()
+
+    def __gt__(self, other):
+        if not isinstance(other, DessertItem):
+            return NotImplemented
+
+        return self.calculate_cost() > other.calculate_cost()
+
+    def __le__(self, other):
+        if not isinstance(other, DessertItem):
+            return NotImplemented
+
+        return self.calculate_cost() <= other.calculate_cost()
+
+    def __ge__(self, other):
+        if not isinstance(other, DessertItem):
+            return NotImplemented
+
+        return self.calculate_cost() >= other.calculate_cost()
+    
 
 class Candy(DessertItem):
     def __init__(self, name:str = "", candy_weight:float = 0.0, price_per_pound:float = 0.0):
@@ -123,3 +159,7 @@ class Order(Payable):
         for item in self.order:
             total_tax += item.calculate_cost() * (item.tax_percent / 100)
         return round(total_tax, 2)
+
+    def sort(self):
+        s_lst = sorted(self.order)
+        return s_lst

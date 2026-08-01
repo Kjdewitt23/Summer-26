@@ -116,6 +116,8 @@ def main():
           break
       except ValueError:
           print("Please enter a valid payment type.")
+
+    order.order = order.sort()
     
     data = order.to_list()
 
