@@ -37,3 +37,28 @@ class Test_Order:
                         IceCream("Chocolate", 3, 1.0),
                         Sundae("Chocolate", 3, 1.0, "PB", 1.0),
                         Cookie("CC", 12, 5.0)]
+
+    def test_order_iter_returns_self(self, order_vals):
+        iterator = iter(order_vals)
+        assert iterator is order_vals
+
+    def test_order_iteration(self, order_vals):
+        items = list(order_vals)
+
+        assert items == [
+            Candy("Snickers", 2.5, 0.5),
+            Cookie("CC", 12, 5.0),
+            IceCream("Chocolate", 3, 1.0),
+            Sundae("Chocolate", 3, 1.0, "PB", 1.0)
+        ]
+
+    def test_order_next_stop_iteration(self, order_vals):
+        iterator = iter(order_vals)
+
+        next(iterator)
+        next(iterator)
+        next(iterator)
+        next(iterator)
+
+        with pytest.raises(StopIteration):
+            next(iterator)

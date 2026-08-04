@@ -1,5 +1,5 @@
 import pytest
-from dessert import Cookie
+from dessert import *
 
 @pytest.fixture
 def cookie():
@@ -37,3 +37,29 @@ class Test_Cookie:
 
     def test_cookie_packaging(self, cookie):
         assert cookie.packaging == "Box"
+
+    def test_cookie_can_combine(self, cookie_vals):
+        new_cook = Cookie("CC", 12, 5.0)
+        assert cookie_vals.can_combine(new_cook) == True
+
+    def test_cookie_can_combine_diff_name(self, cookie_vals):
+        new_cook = Cookie("PB", 12, 5.0)
+        assert cookie_vals.can_combine(new_cook) == False
+
+    def test_cookie_can_combine_diff_cost(self, cookie_vals):
+        new_cook = Cookie("CC", 12, 2.0)
+        assert cookie_vals.can_combine(new_cook) == False
+
+    def test_cookie_can_combine_diff_type(self, cookie_vals):
+        new_can = Candy("Snickers", 2.5, 0.5)
+        assert cookie_vals.can_combine(new_can) == False
+
+    def test_cookie_combine(self, cookie_vals):
+        new_cook = Cookie("CC", 12, 5.0)
+        cookie_vals.combine(new_cook)
+        assert cookie_vals.cookie_quantity == 24
+
+    def test_cookie_combine_error(self, cookie_vals):
+        new_can = Candy("Snickers", 2.5, 0.5)
+        with pytest.raises(TypeError):
+            cookie_vals.combine(new_can)

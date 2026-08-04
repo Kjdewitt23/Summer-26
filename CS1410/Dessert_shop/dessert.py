@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from packaging import Packaging
 from payment import Payable, PayType
+from combine import Combinable
 
 class DessertItem(ABC, Packaging):
     def __init__(self, name:str = "", tax_percent:float = 7.25):
@@ -69,11 +70,25 @@ class Candy(DessertItem):
         self.price_per_pound = price_per_pound
 
     def __str__(self):
-        return f"{self.name} ({self.packaging})\n -    {self.candy_weight} lbs. @ ${self.price_per_pound}/lb:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+        return f"{self.name} ({self.packaging})\n -    {self.candy_weight} lbs. @ ${self.price_per_pound:.2f}/lb:, ${self.calculate_cost():.2f}, [Tax: ${self.calculate_tax():.2f}]"
 
     def calculate_cost(self):
         cost = self.candy_weight * self.price_per_pound
         return round(cost, 2)
+
+    def can_combine(self, other: "Candy") -> bool:
+        return (
+            isinstance(other, Candy)
+            and other.name == self.name
+            and other.price_per_pound == self.price_per_pound
+        )
+
+    def combine(self, other: "Candy") -> "Candy":
+        if not isinstance(other, Candy):
+            raise TypeError(f"Second item must also be Candy, got {type(other)}")
+        
+        self.candy_weight += other.candy_weight
+        return self        
 
 class Cookie(DessertItem):
     def __init__(self, name:str = "", cookie_quantity:int = 0, price_per_dozen:float = 0.0):
@@ -83,11 +98,25 @@ class Cookie(DessertItem):
         self.price_per_dozen = price_per_dozen
 
     def __str__(self):
-        return f"{self.name} Cookies ({self.packaging})\n -    {self.cookie_quantity} cookies. @ ${self.price_per_dozen}/dozen:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+        return f"{self.name} Cookies ({self.packaging})\n -    {self.cookie_quantity} cookies. @ ${self.price_per_dozen:.2f}/dozen:, ${self.calculate_cost():.2f}, [Tax: ${self.calculate_tax():.2f}]"
 
     def calculate_cost(self):
         cost = (self.cookie_quantity / 12) * self.price_per_dozen
         return round(cost, 2)
+
+    def can_combine(self, other: "Cookie") -> bool:
+            return (
+                isinstance(other, Cookie)
+                and other.name == self.name
+                and other.price_per_dozen == self.price_per_dozen
+            )
+    
+    def combine(self, other: "Cookie") -> "Cookie":
+        if not isinstance(other, Cookie):
+            raise TypeError(f"Second item must also be Cookie, got {type(other)}")
+        
+        self.cookie_quantity += other.cookie_quantity
+        return self  
     
 class IceCream(DessertItem):
     def __init__(self, name:str = "", scoop_count:int = 0, price_per_scoop:float = 0.0):
@@ -97,7 +126,7 @@ class IceCream(DessertItem):
         self.price_per_scoop = price_per_scoop
 
     def __str__(self):
-        return f"{self.name} Ice Cream ({self.packaging})\n-    {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+        return f"{self.name} Ice Cream ({self.packaging})\n-    {self.scoop_count} scoops. @ ${self.price_per_scoop:.2f}/scoop:, ${self.calculate_cost():.2f}, [Tax: ${self.calculate_tax():.2f}]"
 
     def calculate_cost(self):
         cost = self.scoop_count * self.price_per_scoop
@@ -111,7 +140,7 @@ class Sundae(IceCream):
         self.topping_price = topping_price
 
     def __str__(self):
-        return f"{self.topping_name} {self.name} Sundae ({self.packaging})\n -    {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop\n-    {self.topping_name} @ ${self.topping_price}:, ${self.calculate_cost()}, [Tax: ${self.calculate_tax()}]"
+        return f"{self.topping_name} {self.name} Sundae ({self.packaging})\n -    {self.scoop_count} scoops. @ ${self.price_per_scoop:.2f}/scoop\n-    {self.topping_name} @ ${self.topping_price:.2f}:, ${self.calculate_cost():.2f}, [Tax: ${self.calculate_tax():.2f}]"
 
     def calculate_cost(self):
         cost = (self.scoop_count * self.price_per_scoop) + self.topping_price
@@ -121,6 +150,7 @@ class Order(Payable):
     def __init__(self):
         self.order = []
         self.pay_type = "CASH"
+        self._index = 0
 
     def get_pay_type(self):
         return self.pay_type
@@ -140,13 +170,34 @@ class Order(Payable):
         return [line.split(",") for line in lines]
     
     def add(self, item):
+        if not isinstance(item, Combinable):
+            self.order.append(item)
+            return
+
+        for dessert in self.order:
+            if (
+                isinstance(dessert, Combinable)
+                and dessert.can_combine(item)
+            ):
+                dessert.combine(item)
+                return
+
         self.order.append(item)
 
     def __len__(self):
         return len(self.order)
     
     def __iter__(self):
-        return iter(self.order)
+        self._index = 0
+        return self
+
+    def __next__(self):
+        if self._index >= len(self.order):
+            raise StopIteration
+
+        item = self.order[self._index]
+        self._index += 1
+        return item
     
     def order_cost(self):
         total = 0
